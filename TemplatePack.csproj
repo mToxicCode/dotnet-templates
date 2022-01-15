@@ -7,6 +7,7 @@
         <Authors>daniilda</Authors>
         <Description>Template for creating an ASP.NET web application</Description>
         <PackageTags>dotnet-new;templates;toxicode;webapi</PackageTags>
+	<RepositoryUrl>https://github.com/mToxicCode/dotnet-templates</RepositoryUrl>
 
         <TargetFramework>netcoreapp6.0</TargetFramework>
 
