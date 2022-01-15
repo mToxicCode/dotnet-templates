@@ -24,10 +24,13 @@ jobs:
         env:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}        
           
+      - run: echo "REPOSITORY_NAME=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')" >> $GITHUB_ENV
+        shell: bash
+          
       - name: Build solution and generate NuGet package
         run: |  
-          cd ${{github.repository#*/}}
+          cd ${{env.REPOSITORY_NAME}}
           dotnet pack -c Release -o out  
 
       - name: Push generated package to GitHub registry
-        run: dotnet nuget push ./${{github.repository#*/}}/out/*.nupkg --skip-duplicate --no-symbols true
+        run: dotnet nuget push ./${{env.REPOSITORY_NAME}}/out/*.nupkg --skip-duplicate --no-symbols true
