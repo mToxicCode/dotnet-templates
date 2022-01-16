@@ -1,13 +1,12 @@
 name: Create nuget package
 
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-    types: [closed]
-    branches:
-      - master
+on: 
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Version of nuget package'
+        required: true
+        default: '1.0.0'
 
 jobs:
   build:
@@ -24,14 +23,14 @@ jobs:
           
       - name: Get current date for versioning
         id: date
-        run: echo "::set-output name=date::$(date +'%y.%-m.%-d-%H.%M')"
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d-%H.%M')" #add in versioning
           
       - name: Log in registry
         run: dotnet nuget add source --username ${{github.actor}} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/${{github.repository_owner}}/index.json"
           
       - name: Build solution and generate NuGet package
         run: |  
-          dotnet pack -c Release -o out -p:PackageVersion=${{steps.date.outputs.date}}
+          dotnet pack -c Release -o out -p:PackageVersion=${{ github.event.inputs.name }}
 
       - name: Push generated package to GitHub registry
         run: dotnet nuget push ./out/*.nupkg --skip-duplicate --no-symbols true --api-key ${{secrets.GITHUB_TOKEN}} --source "github"
