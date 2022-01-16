@@ -24,7 +24,7 @@ jobs:
           
       - name: Get current date for versioning
         id: date
-        run: echo "::set-output name=date::$(date +'%Y.%m.%d.%H.%M')"
+        run: echo "::set-output name=date::$(date +'%Y.%-m.%-d-%H.%M')"
           
       - name: Log in registry
         run: dotnet nuget add source --username ${{github.actor}} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/${{github.repository_owner}}/index.json"
