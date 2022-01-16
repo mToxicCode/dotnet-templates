@@ -20,7 +20,14 @@ jobs:
       - name: Setup .NET Core @ Latest
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '6.0'      
+          dotnet-version: '6.0'
+          
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d-%h-%s')"
+        
+      - name: Test
+        run: echo ${{steps.date.outputs.date}}
           
       - name: Log in registry
         run: dotnet nuget add source --username ${{github.actor}} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/${{github.repository_owner}}/index.json"
