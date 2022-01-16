@@ -8,6 +8,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{499FB6
 	ProjectSection(SolutionItems) = preProject
 		Dockerfile = Dockerfile
 		.dockerignore = .dockerignore
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToxiCode.Templates.WebApi", "src\ToxiCode.Templates.WebApi\ToxiCode.Templates.WebApi.csproj", "{F5B0C8B1-81AD-4BA5-B8AB-21A1C9C74FD6}"
