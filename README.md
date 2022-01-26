@@ -7,3 +7,4 @@
 ## Available templates
 - ToxiCode.Templates.WebApi || tc-api ----> Template for creating a web api app
 - ToxiCode.Templates.WebBlazor || tc-blazor-ssr ----> Template for creating a blazor app with SSR
+- ToxiCode.Templates.Package || tc-pkg ----> Template for creating packages and libs
